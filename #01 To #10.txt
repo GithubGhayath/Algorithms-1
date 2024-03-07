@@ -1,0 +1,536 @@
+Problem 01:
+{{{{{{{{{{{{{{{{ Multipliacyion Table From 1 To 10}}}}}}}}}}}}}}}}}}}}}}}}
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+
+string Space(int i)
+{
+	if (i < 10)
+		return "   |";//3 spase
+	else
+		return "  |";//2 space
+}
+string Spacebb(int i, int j)
+{
+	if (i * j < 10)
+		return"      ";//6 Space
+	else
+		return"     ";//5 Space
+}
+void Print_Header()
+{
+	cout << "\n\n\t     Multipliacyion Table From 1 To 10\n" << endl;//5 space
+	cout << "      ";//6 space
+	for (int i = 1; i <= 10; i++)
+	{
+		cout << i << "      ";//6 space
+	}
+	cout << endl;
+	cout << "------------------------------------------------------------------------" << endl;
+}
+void Print_Multipliction()
+{
+	for (int i = 1; i <= 10; i++)
+	{
+		cout << " " << i << Space(i);
+		for (int j = 1; j <= 10; j++)
+		{
+			cout << i * j << Spacebb(i,j);//5 Space
+		}
+		cout << endl;
+	}
+}
+
+int main()
+{
+	Print_Header();
+	Print_Multipliction();
+
+
+}
+==============================================================================================================
+
+Problem 02: 
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{[Print Prime Number From 1 To N}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+bool CheckPrimeNumber(int num)
+{
+	int N = round(num / 2);
+	for (int i = 2; i <= N; i++)
+	{
+		if (num % i == 0)
+			return false;
+
+	}
+	return true;
+}
+int ReadNumber(string massig)
+{
+	int number;
+	do
+	{
+		cout << massig << endl;
+		cin >> number;
+	} while (number <= 0);
+	return number;
+}
+void CheckPrinmeNumberFrom1To10(int num)
+{
+	for (int i = 1; i <= num; i++)
+	{
+		if (CheckPrimeNumber(i) == true)
+			cout << "The number  [" << i << "] Is Prime Number" << endl;
+	}
+
+}
+int main()
+{
+	CheckPrinmeNumberFrom1To10(ReadNumber("Please enter a number ? "));
+
+}
+
+
+============================================================================================================
+
+
+Problem 03:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Perfect Number}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+enum enPerfectNumber{perfect=1,NotPerfect=0};
+enPerfectNumber CheckPerfectNumber(int num, int sum)
+{
+	if (num == sum)
+		return enPerfectNumber::perfect;
+	else
+		return enPerfectNumber::NotPerfect;
+}
+int ReadNumber(string massig)
+{
+	int number;
+	do
+	{
+		cout << massig << endl;
+		cin >> number;
+	} while (number <= 0);
+	return number;
+}
+int SumOfDivisors(int num)
+{
+	int SumOfDivisorsNUMBER = 0;
+	int HafeOfNumber = round(num / 2);
+	for (int i = 1; i <= HafeOfNumber; i++)
+	{
+		if (num % i == 0)
+			SumOfDivisorsNUMBER += i;
+	}
+	return CheckPerfectNumber(SumOfDivisorsNUMBER,num);
+}
+void PrintResult(int b,int n)
+{
+	if (b == enPerfectNumber::perfect)
+		cout << "The number " << n << " Is Perfect Number" << endl;
+	else
+		cout << "The number " << n << " Is Not Perfect Number" << endl;
+}
+int main()
+{
+	int number = ReadNumber("Please enter a number ? ");
+	PrintResult(SumOfDivisors(number), number);
+}
+
+
+
+=======================================================================================================
+
+Problem 04:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{Print perfect number from 1 to N}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+
+int ReadNUmber(string massig)
+{
+	int num;
+	do
+	{
+		cout << massig << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+bool IsPerfectNumber(int num)
+{
+	int Sum = 0;
+	int HalfOfNumber = round(num/2);
+	for (int i = 1; i <= HalfOfNumber; i++)
+	{
+		if (num % i == 0)
+			Sum+=i;
+	}
+	
+		return (Sum == num);
+	
+}
+void PrintPerfectNumbers(int number)
+{
+	for (int i = 1; i <= number; i++)
+	{
+		if (IsPerfectNumber(i) == true)
+			cout << "The number [" << i << "] is Perfct" << endl;
+	}
+}
+int main()
+{
+	PrintPerfectNumbers(ReadNUmber("Please enter a number ?"));
+	
+	return 0;
+}
+
+
+
+
+==================================================================================================
+
+
+
+
+problem 05:
+
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{[ Print Number In Reversed Order}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+int ReadNumber(string massig)
+{
+	int number;
+	do
+	{
+		cout << massig << endl;
+		cin >> number;
+	} while (number <= 0);
+	return number;
+}
+void PrintNumberInReversedOrder(int num)
+{
+	cout << "Numbers Reversed :" << endl;
+	int Remainder = 0;
+	while (num > 0)
+	{
+		Remainder = num % 10;
+		num = num / 10;
+		cout << Remainder << endl;
+	}
+}
+int main()
+{
+	PrintNumberInReversedOrder(ReadNumber("Enter a number ? "));
+}
+
+
+==============================================================================================================
+
+
+problem 06:
+
+
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{Sum Of Digits}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]
+
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+int ReadNumber(string massege)
+{
+	long long int number;
+	do
+	{
+		cout << massege << endl;
+		cin >> number;
+	} while (number <= 0);
+	return number;
+}
+
+void PrintDigits(int num)
+{
+	int Remainder = 0;
+	int SumOfDigits = 0;
+	cout << endl;
+	while (num > 0)
+	{
+
+		Remainder = num % 10;
+		num = num / 10;
+		cout << Remainder << endl;
+		SumOfDigits += Remainder;
+	}
+	cout << "       +" << endl;
+	cout << "--------"<<endl;
+	cout << SumOfDigits << endl;;
+}
+int main()
+{
+	PrintDigits(ReadNumber("Please enter a number ? "));
+}
+
+
+
+==============================================================================================================
+
+
+
+problem 07:
+
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Reverse Number}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number <= 0);
+		return number;
+}
+int ReversNumber(int num)
+{
+	int Remainder = 0, ReversNumber = 0;
+	while (num > 0)
+	{
+		Remainder = num % 10;
+		num = num / 10;
+		ReversNumber = ReversNumber * 10 + Remainder;
+	}
+	return  ReversNumber;
+}
+string PrintResult(int num)
+{
+	return"The Reversed number of this [" + to_string(num) + "] Is (" + to_string(ReversNumber(num)) + ")\n";
+}
+int main()
+{
+	int number = ReadNumber("Please enter a number ??");
+	cout << PrintResult(number);
+}
+
+
+===========================================================================================================
+
+
+Problem 08:
+
+{{{{{{{{{{{{{{{{{{{{{{{{Digits Frequency}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+
+	} while (number <= 0);
+	return number;
+}
+int CountTimesFrequency(int num, int dig)
+{
+	int Remainder = 0,count=0;
+	while (num > 0)
+	{
+		Remainder = num % 10;
+		num = num / 10;
+		if (Remainder == dig)
+			count++;
+	}
+	return count;
+}
+void PrintResult(int num,int digit)
+{
+	cout << "The Digit[" << digit << "] Is frequency (" << CountTimesFrequency(num, digit) << ") Tims(s)" << endl;
+}
+int main()
+{
+	int Number = ReadNumber("Please enter a number ??"),
+		Digit = ReadNumber("Please enter a digit ??");
+	PrintResult(Number, Digit);
+
+}
+
+
+=========================================================================================================
+
+
+
+
+
+Problem 09:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Print counting Of Frequency Number}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+
+	} while (number <= 0);
+	return number;
+}
+
+int CountOfFrequencyNumber(int number, int digit)
+{
+	int Remainder = 0,
+		count = 0;
+	do
+	{
+		Remainder = number % 10;
+		number = number / 10;
+		if (Remainder == digit)
+			count++;
+	} while (number > 0);
+		return count;
+}
+
+void PrintcountingOfFrequencyNumber(int number)
+{
+	for (int i = 0; i <= 9; i++)
+	{
+		if (CountOfFrequencyNumber(number, i) > 0)
+			cout << "The number [" << i << "] Frequency (" << CountOfFrequencyNumber(number, i) << ") Time(s)" << endl;
+	}
+}
+
+int main()
+{
+	PrintcountingOfFrequencyNumber(ReadNumber("Enter a number ??"));
+}
+
+
+
+===========================================================================================
+
+Problem 10:
+
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{ Print Digit In Order}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+
+int ReversNumber(int num)
+{
+	int Remainder = 0;
+	int ReversedNumber = 0;
+	do
+	{
+		Remainder = num % 10;
+		num = num / 10;
+		ReversedNumber = ReversedNumber * 10 + Remainder;
+	} while (num > 0);
+
+	return  ReversedNumber;
+}
+
+int ReadNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number <= 0);
+	return ReversNumber(number);
+
+}
+
+void PrintDigitInOrder(int number)
+{
+	cout << "\n------------------------------------------" << endl;
+	int Remainder = 0;
+	do
+	{
+		Remainder = number % 10;
+		number =number / 10;
+		cout << Remainder << endl;
+	} while (number > 0);
+}
+
+int main()
+{
+	PrintDigitInOrder(ReadNumber("Please enetr a number ??"));
+}
+
+
+
+
+
+
+
+************************************************************************************************************
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{END}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+************************************************************************************************************
+
+
+
+
+
+

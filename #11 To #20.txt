@@ -1,0 +1,484 @@
+
+
+problem 11:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{palindrom number}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+==============================================================
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int num;
+	do
+	{
+		cout << message << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+int ReversNumber(int N)
+{
+	int Rem = 0,N2=0;
+	while (N > 0)
+	{
+		Rem = N % 10;
+		N = N / 10;
+		N2 = N2 * 10 + Rem;
+	}
+	return N2;
+}
+int CountReversNumber(int N)
+{
+	int Rem = 0, count = 0;
+	while (N > 0)
+	{
+		Rem = N % 10;
+		N = N / 10;
+		count++;
+		
+	}
+	return count;
+}
+bool CheckNumber(int N)
+{
+	if (CountReversNumber(N) % 2 != 0)
+		return N == ReversNumber(N);
+	else
+		return false;
+}
+void PrintResult(int N)
+{
+	if (CheckNumber(N))
+		cout << "\nYes, it is a palindrome number" << endl;
+	else 
+		cout << "\nNo, it is Not a palindrome number" << endl;
+
+}
+int main()
+{
+	PrintResult(ReadNumber("Enter a number ??"));
+}
+
+======================================================================================================
+
+problem 12:
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{[[ Print inverted pattern}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number <= 0);
+	return number;
+}
+
+void Print_inverted_pattern(int num)
+{
+	cout << endl;
+	for (int i = num; i >= 1; i--)
+	{
+		for (int j = 1; j <= i; j++)
+		{
+			cout << i;
+		}
+		cout << endl;
+	}
+}
+int main()
+{
+	Print_inverted_pattern(ReadNumber("Enter a number ??"));
+}
+
+======================================================================================
+
+problem 13:
+
+1
+22
+333
+4444
+55555
+
+
+HERE DUBBING : 
+
+
+{{{{{{{{{{{{{{{{{{{{Print Inveted Pattern}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int num;
+	do
+	{
+		cout << message << endl;
+		cin >> num;
+
+	} while (num <= 0);
+	return num;
+}
+
+void PrintInvetedPattern(int number)
+{
+	cout << endl;
+	for (int i = 1; i <= number; i++)
+	{
+		for (int j = 1; j <= i; j++)
+		{
+			cout << i;
+		}
+		cout << endl;
+	}
+
+}
+
+int main()
+{
+	PrintInvetedPattern(ReadNumber("Enter a number ??"));
+}
+
+
+===================================================================================================
+
+problem 14:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Print letter pattern}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int num;
+	do
+	{
+		cout << message << endl;
+		cin >> num;
+
+	} while (num <= 0);
+	return num;
+}
+
+void Print_letter_pattern(int num)
+{
+	num = num + 64;
+	for (int i = num; i >= 65; i--)
+	{
+		for (int j = 1; j <= i - 64; j++)
+		{
+			cout << char(i);
+		}
+		cout << endl;
+	}
+}
+
+int main()
+{
+	Print_letter_pattern(ReadNumber("Enter a number ??"));
+}
+
+=========================================================================================================
+problem 15:
+
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{ Print Letter Pattern}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int num;
+	do
+	{
+		cout << message << endl;
+		cin >> num;
+
+	} while (num <= 0);
+	return num;
+}
+
+void PrintLetterPattern(int number)
+{
+	for (int i = 65; i <= (number + 65 - 1); i++)
+	{
+		for (int j=65;j<= i;j++)
+		{
+			cout << char(i);
+		}
+		cout << endl;
+	}
+}
+
+int main()
+{
+	PrintLetterPattern(ReadNumber("Enter a number ??"));
+}
+
+
+
+===============================================================================================================
+
+
+problem 16:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Print All word from AAA To ZZZ}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+void PrintAllWordFromAAAToZZZ()
+{
+	int c = 0;
+	for (int i = 65; i <= 90; i++)
+	{
+		for (int j = 65; j <= 90; j++)
+		{
+			for (int k = 65; k <= 90; k++)
+			{
+				string word = "";
+				word += char(i);
+				word += char(j);
+				word += char(k);
+				cout << word << endl;
+				c++;
+
+			}
+		}
+	}
+	cout << "\n" << c << endl;
+}
+
+
+
+int main()
+{
+	PrintAllWordFromAAAToZZZ();
+	
+}
+
+
+
+=========================================================================================================
+problem 17: 
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Guess Password}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+string ReadPasseord(string message)
+{
+	string Password;
+	cout << message << endl;
+	cin>> Password;
+	return Password;
+}
+
+bool CheckPassword(string Pass, string guessPass)
+{
+	return Pass == guessPass;
+}
+
+void GuessPassword(string Pass)
+{
+	int count = 1;
+	for (int i = 65; i <= 90; i++)
+	{
+		for (int j = 65; j <= 90; j++)
+		{
+			for (int k = 65; k <= 90; k++)
+			{
+				string word = "";
+				word += char(i);
+				word += char(j);
+				word += char(k);
+				cout << "\nTrail [" << count << "] : " << word << endl;
+				
+				if (CheckPassword(word, Pass))
+				{
+					cout << "\nPassWord Is : " << word << endl;
+					cout << "Found After {" << count << "} Trail(s)" << endl;
+					i = 91, k = 91, j = 91;
+				}
+				count++;
+			}
+		}
+	}
+}
+
+int main()
+{
+	GuessPassword(ReadPasseord("Please enter your Password ?"));
+}
+
+
+
+================================================================================================================
+
+
+problem 18:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Encrypt Decrypt}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+string ReadTxet(string message)
+{
+	string text;
+	cout << message << endl;
+	getline(cin, text);
+	return text;
+}
+
+string EncryptText(string T,int Key)
+{
+	int length = T.length();
+	for (int i = 0; i <= length; i++)
+	{
+		T[i] = char(int(T[i]) + Key);
+	}
+	return T;
+}
+
+string DecyptText(string T, int Key)
+{
+	int length = T.length();
+	for (int i = 0; i <= length; i++)
+	{
+		T[i] = char((int)T[i] - Key);
+	}
+	return T;
+}
+
+void Print(string T,int K)
+{
+	cout << "\nText Before Encryption : " << T << endl;
+	cout << "Text After Encryption :  " << EncryptText(T, K) << endl;
+	cout << "Text After Decryption  : " << DecyptText(EncryptText(T,K), K) << endl;
+}
+
+int main()
+{
+	const short Key = 2;
+	Print(ReadTxet("Enter a Text ?"), Key);
+}
+
+===========================================================================================
+
+
+
+problem 19:
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Random number}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+int main()
+{
+	srand((unsigned)time(NULL));
+	cout << RandomNumber(1, 10) << endl;
+	cout << RandomNumber(1, 10) << endl;
+	cout << RandomNumber(1, 10) << endl;
+}
+
+
+==============================================================================
+
+problem 20:
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Random Sympols}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+enum enSympol{Small=1,capital=2,Character=3,Digit=4};
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+char RandomType(enSympol SYM)
+{
+	switch (SYM)
+	{
+	case enSympol::capital:
+		return RandomNumber(65, 90);
+		break;
+	case enSympol::Small:
+		return RandomNumber(97, 122);
+		break;
+	case enSympol::Character:
+		return RandomNumber(33, 47);
+		break;
+	case enSympol::Digit:
+		return RandomNumber(48, 57);
+		break;
+	}
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	cout << RandomType(enSympol::Small) << endl;
+	cout << RandomType(enSympol::capital) << endl;
+	cout << RandomType(enSympol::Character) << endl;
+	cout << RandomType(enSympol::Digit) << endl;
+	return 0;
+}
+
+

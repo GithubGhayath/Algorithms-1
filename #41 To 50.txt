@@ -1,0 +1,665 @@
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Palindrome number}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]
+***********************************************************************************************************************
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+
+int REadNUmber(string message)
+{
+	int number=0;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number < 0);
+	return number;
+}
+
+int REadLength(string message)
+{
+	int length = 0;
+	do
+	{
+		cout << message << endl;
+		cin >> length;
+	} while (length < 0);
+	return length;
+}
+
+void FillArray(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		A[i] = REadNUmber("Please enter a number ? ");
+	}
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i <= length - 1; i++)
+	{
+		cout << A[i] << " ";
+	}
+}
+
+void ReversOrder(int A[100],int S[100], int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		S[i] = A[length - i - 1];
+	}
+}
+
+bool CheckNumberInArray(int A[100], int S[100],int length)
+{
+	ReversOrder(A, S, length);
+	for (int i = 0; i < length; i++)
+	{
+		if (A[i] != S[i])
+			return false;
+	}
+	return true;
+}
+
+void PrintResult(int A[100], int S[100], int length)
+{
+	if (CheckNumberInArray(A, S, length) == true)
+		cout << "Yes, array is palindrome " << endl;
+	else 
+		cout << "No, array is not palindrome " << endl;
+}
+
+
+int main()
+{
+	int A[100], S[100], length = REadLength("Please enter a length of array ? ");
+	FillArray(A, length);
+	cout << "Array 1 elements : " << endl;
+	PrintArrayData(A, length);
+	cout << endl << endl;
+	PrintResult(A, S, length);
+
+	//int A[5] = { 10,20,30,20,10 }, S[5], length = 5;
+	//ReversOrder(A, S, length);
+	////cout << CheckNumberInArray(A, S, length) << endl;
+	//PrintResult(A, S, length);
+}
+
+========================================================================================================================
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Odd number in Array}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]
+***********************************************************************************************************************
+
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Random = rand() % (to - from + 1) + from;
+	return Random;
+}
+
+int ReadLengthOfArray(string message)
+{
+	int length;
+	do
+	{
+		cout << message << endl;
+		cin >> length;
+	} while (length <= 0);
+	return length;
+}
+
+void FillArrayWithRandomNumbers(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+		A[i] = RandomNumber(1, 100);
+}
+
+void PrintArrayElements(int A[100], int length,string message)
+{
+	cout << message << endl;
+	for (int i = 0; i < length; i++)
+		cout << A[i] << " ";
+}
+
+bool CheckOddNumber(int number)
+{
+	return number % 2 == 0;
+}
+
+int CounterOddNumbers(int A[100], int length)
+{
+	int count = 0;
+	for (int i = 0; i < length; i++)
+	{
+		if (!CheckOddNumber(A[i]) == true)
+			count++;
+	}
+	return count;
+}
+
+int main()
+{
+srand((unsigned)time(NULL));
+	int Array[100], length = ReadLengthOfArray("Please enter a length of array ? ");
+	FillArrayWithRandomNumbers(Array, length);
+	PrintArrayElements(Array, length, "\n\nArray Elements : ");
+	cout << endl << endl;
+	cout << "Odd Numbers count is : " << CounterOddNumbers(Array, length);
+
+
+
+	return 0;
+
+}
+
+========================================================================================================================
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Even number in Array}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+
+enum enTypeNumbers{Even=1,Odd=0};
+
+int RandomNumbers(int from, int to)
+{
+	int Random = rand() % (to - from + 1) + from;
+	return Random;
+}
+
+void FillArrayWithRandomNumbers(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+		A[i] = RandomNumbers(1, 100);
+}
+
+int ReadLengthOfArray(string message)
+{
+	int length = 0;
+	do
+	{
+		cout << message << endl;
+		cin >> length;
+	} while (length <= 0);
+	return length;
+}
+
+void PrintArrayData(int A[100], int length, string message)
+{
+	cout << message;
+	for (int i = 0; i < length; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl << endl;
+}
+
+enTypeNumbers ChechEvenNumbers(int number)
+{
+	if (number % 2 == 0)
+		return enTypeNumbers::Even;
+	else
+		return enTypeNumbers::Odd;
+}
+
+int CounterNumberEven(int A[100], int length)
+{
+	int count = 0;
+	for (int i = 0; i < length; i++)
+		if (ChechEvenNumbers(A[i]) == enTypeNumbers::Even)
+			count++;
+	return count;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int A[100], length = ReadLengthOfArray("Please enter a length of array ? ");
+	FillArrayWithRandomNumbers(A, length);
+	PrintArrayData(A, length,"\n\nArray Elements : ");
+	cout << "Even Numbers Count Is : " << CounterNumberEven(A, length) << endl<<endl;
+
+
+	
+
+	return 0;
+}
+
+========================================================================================================================
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Positave number in array }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+enum enTypeOfNumber{Positave=1,Negatave=0};
+
+enTypeOfNumber CheckNumber(int number)
+{
+	if (number >= 0)
+		return enTypeOfNumber::Positave;
+	else
+		return enTypeOfNumber::Negatave;
+}
+
+int RandomNumber(int from, int to)
+{
+	int Random = rand() % (to - from + 1) + from;
+	return Random;
+}
+
+void FillArrayWithRandomNumber(int A[100], int& length)
+{
+	cout << "Please enter a length of array ?  ";
+	cin >> length;
+	for (int i = 0; i < length; i++)
+		A[i] = RandomNumber(-100, +100);
+}
+
+void PrintArray(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+		cout << A[i] << " ";
+
+	cout << endl << endl << endl;
+}
+
+int CountNumber(int A[100],int length)
+{
+	int count=0;
+	for (int i = 0; i < length; i++)
+		if (CheckNumber(A[i]) == enTypeOfNumber::Positave)
+			count++;
+	return count;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+
+
+	int Array[100],  length = 0;
+	FillArrayWithRandomNumber(Array, length);
+	cout << "\nArray Elements : ";
+	PrintArray(Array, length);
+	cout << "Positive Number Count Is : " << CountNumber(Array, length);
+
+}
+
+
+
+
+
+========================================================================================================================
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Nigativ number in array}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+enum enTypeOfNumber{Positave=1,Negatave=0};
+
+enTypeOfNumber CheckNumber(int number)
+{
+	if (number >= 0)
+		return enTypeOfNumber::Positave;
+	else
+		return enTypeOfNumber::Negatave;
+}
+
+int RandomNumber(int from, int to)
+{
+	int Random = rand() % (to - from + 1) + from;
+	return Random;
+}
+
+void FillArrayWithRandomNumber(int A[100], int& length)
+{
+	cout << "Please enter a length of array ?  ";
+	cin >> length;
+	for (int i = 0; i < length; i++)
+		A[i] = RandomNumber(-100, +100);
+}
+
+void PrintArray(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+		cout << A[i] << " ";
+
+	cout << endl << endl << endl;
+}
+
+int CountNumber(int A[100],int length)
+{
+	int count=0;
+	for (int i = 0; i < length; i++)
+		if (CheckNumber(A[i]) == enTypeOfNumber::Negatave)
+			count++;
+	return count;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+
+
+	int Array[100],  length = 0;
+	FillArrayWithRandomNumber(Array, length);
+	cout << "\nArray Elements : ";
+	PrintArray(Array, length);
+	cout << "Negative Number Count Is : " << CountNumber(Array, length);
+
+}
+
+
+========================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{ABS founction }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+int ReadNumber(string message)
+{
+	int number = 0;
+	cout << message << endl;
+	cin >> number;
+	return number;
+}
+
+int My_abs(int number)
+{
+	if (number > 0)
+		return number;
+	else
+		return number * -1;
+}
+
+int main()
+{
+	int number = ReadNumber("Please enter a number ? ");
+	cout << "\n\nMy abs Result : " << My_abs(number) << endl;
+	cout << "C++ abs Result    : " << abs(number) << endl;
+
+
+	return 0;
+}
+
+========================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Round founction }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+float ReadNumber(string message)
+{
+	float number = 0.0;
+	cout << message << endl;
+	cin >> number;
+	return number;
+}
+
+float FractionOfNumber(float number)
+{
+	int num = number;
+	return number - num;
+}
+
+int My_Round(float number)
+{
+	int num = number;
+	float Fraction = FractionOfNumber(number);
+	if(number>0)
+	{
+		if (Fraction >= 0.5)
+			return ++num;
+		else
+			return num;
+	}
+	else
+	{
+		if (abs(Fraction) >= .5)
+			return --num;
+		else
+			return num;
+	}
+}
+
+int main()
+{
+	float number = ReadNumber("Please enter a number ? ");
+	cout << "\n\nMy abs Result : " << My_Round(number) << endl;
+	cout << "C++ abs Result : " << round(number) << endl;
+	
+	return 0;
+}
+
+
+
+
+
+
+========================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{floor founction}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+float ReadNumber(string messsaeg)
+{
+	float number = 0;
+	cout << messsaeg << endl;
+	cin >> number;
+	return number;
+}
+
+float FrectionOfNumber(float num)
+{
+	int number = num;
+	return num - number;
+}
+
+int My_Floor(float num)
+{
+	int number = num;
+	float Frection = FrectionOfNumber(num);
+	if (num == 0)
+		return 0;
+	else if (num > 0)
+		return number;
+	else
+		return number - 1;
+}
+
+int main()
+{
+	float Number = 0;
+	Number = ReadNumber("Please enter a number ? ");
+	cout << "My floor Result : " << My_Floor(Number) << endl;
+	cout << "C++ floor Result : " << floor(Number) << endl;
+
+}
+
+
+
+
+========================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{ceil founction}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+using namespace std;
+
+
+float GetFraction(float num)
+{
+	int number = (int)num;
+	return num - number;
+}
+
+int My_Ceil(float number)
+{
+	int num = (int)number;
+	float Fraction = GetFraction(number);
+	if (Fraction == .0)
+		return num;
+	else
+		if (number > 0)
+			return ++num;
+		else
+			return num;
+}
+
+float ReadNumber(string message)
+{
+	float number = 0;
+	cout << message << endl;
+	cin >> number;
+	return number;
+}
+
+int main()
+{
+	float number = ReadNumber("please enter a number ?") ;
+	cout << "\n\n";
+	cout << "My Ceil Result : " << My_Ceil(number) << endl;
+	cout << "C++ Ceil Result  : " << ceil(number) << endl;
+}
+
+
+========================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{sqrt founction }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+#include<iostream>
+#include<cmath>
+#include<cstdlib>
+#include<string>
+using namespace std;
+
+
+float ReadNumber(string messsaeg)
+{
+	float number = 0;
+	cout << messsaeg << endl;
+	cin >> number;
+	return number;
+}
+
+
+float My_Sqrt(int num)
+{
+	return pow(num, 0.5);
+}
+
+int main()
+{
+	float number = ReadNumber("Please enter a number ? ");
+	cout << "My Sqrt Result : " << My_Sqrt(number) << endl;
+	cout << "C++ sqrt Result : "<<sqrt(number) << endl;
+	return 0;
+
+}
+
+
+
+
+
+========================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{power founction }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+***********************************************************************************************************************
+
+
+
+
+#include<iostream>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+using namespace std;
+
+long long My_Pow(int bass, int ex)
+{
+	long long power = 1;
+	for (int i = 1; i <= ex; i++)
+		power *= bass;
+	return power;
+}
+
+int ReadNUmber(string message)
+{
+	int number = 0;
+	cout << message << endl;
+	cin >> number;
+	return number;
+}
+
+int main()
+{
+	int bass = ReadNUmber("Enter a number ? ");
+	int ex = ReadNUmber("\nEnter exponitionl ? ");
+	cout << "\n\nMy power Result : " << My_Pow(bass, ex) << endl;
+	cout << "C++ Power Result : " << pow(bass, ex) << endl;
+
+
+	return 0;
+
+}
+

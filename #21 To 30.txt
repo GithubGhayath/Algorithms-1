@@ -1,0 +1,647 @@
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Key }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+enum enType { small = 1, capital = 2,digit=3,character=4 };
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+int ReadNumberOfkeys(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number <= 0);
+	return number;
+}
+
+char Generatorletter(enType T)
+{
+	switch (T)
+	{
+	case enType::capital:
+		return RandomNumber(65, 90);
+		break;
+	case enType::small:
+		return RandomNumber(97, 122);
+		break;
+	case enType::digit:
+		return RandomNumber(48, 57);
+		break;
+	case enType::character:
+		return RandomNumber(33, 47);
+
+	}
+}
+
+string MakeWord(enType T, short lengthOfWord)
+{
+	string word = "";
+	for (int i = 0; i <= lengthOfWord - 1; i++)
+	{
+		word += Generatorletter(T);
+	}
+	return word;
+}
+
+string MakeKeys(enType T, short lengthOfWord, short lengthOfKey)
+{
+	string Key = "";
+	for (int i = 0; i <= lengthOfKey - 1; i++)
+	{
+		if (i != lengthOfKey - 1)
+			Key += MakeWord(T, lengthOfWord)+"-";
+		else
+			Key += MakeWord(T, lengthOfWord);
+	}
+	return Key;
+}
+
+void PrintKeys(enType T, short lengthOfWord, short lengthOfKey, int num)
+{
+	cout << endl;
+	for (int i = 1; i <= num; i++)
+	{
+		cout << "Key [" << i << "] : " << MakeKeys(T, lengthOfWord, lengthOfKey) << endl;
+	}
+}
+
+int main()
+{
+	int lengthofkey = 4, lengthofword = 4;
+	PrintKeys(enType::capital, lengthofword, lengthofkey, ReadNumberOfkeys("Please enter what is numbers of key ?? "));
+	return 0;
+}
+
+==========================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{search number in array }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+int ReadLengthOfarray(string message)
+{
+	int length;
+	do
+	{
+		cout << message << endl;
+		cin >> length;
+	} while (length < 0);
+	return length;
+}
+
+int ReadNumberForSearch(string message)
+{
+	int number;
+	cout << message << endl;
+	cin >> number;
+	return number;
+}
+
+void InputArrayData(int Array[100], int length)
+{
+	cout << "\nEnter Array Elements :" << endl;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		cout << "Element [" << i + 1 << "] : ";
+		cin >> Array[i];
+	}
+	cout << endl;
+}
+
+int  IsNumberInArray(int num, int Arry[100],int length)
+{
+	int count = 0;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		if (num == Arry[i])
+			count++;
+	}
+	return count;
+}
+
+void PrintArrayData(int A[100], int length,string message)
+{
+	cout << "\n" << message ;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+}
+
+string PrintResult(int num, int Arry[100], int length)
+{
+	return "\n" + to_string(num) + " is reapeted " + to_string(IsNumberInArray(num, Arry, length)) + " time(s)\n\n";
+}
+
+int main()
+{
+	int Array[100], length = ReadLengthOfarray("Please enter a length of array ?");
+	InputArrayData(Array, length);
+	PrintArrayData(Array, length,"Original Array : ");
+	int number = ReadNumberForSearch("Please enter a number for search ?");
+	cout << PrintResult(number, Array, length);
+
+}
+
+====================================================================================================================
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Fill Array with random number}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+void InputNumberInArray(int A[100], int &length,string message)
+{
+	cout << message << endl;
+	cin >> length;
+	length--;
+	int Timp = length;
+	short i = 0;
+	while (i<=length)
+	{
+		A[i] = RandomNumber(1, 100);
+		i++;
+	}
+	length = Timp;
+}
+
+void PrintArrayData(int A[100], int length, string message)
+{
+	cout << message <<" ";
+	for (int i = 0; i <= length ; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int A[100], length = 0;
+	InputNumberInArray(A, length, "Please enter a length of Array ?");
+	PrintArrayData(A, length, "\nArray Elements : ");
+}
+
+
+=======================================================================================================================
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Max number in Array}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+void InputArrayData(int A[100], int& length)
+{
+	cout << "Please enter Array length ? ";
+	cin >> length;
+	cout << endl;
+	for (int i = 0; i <= length - 1; i++)
+		A[i] = RandomNumber(1, 100);
+}
+
+int SearchMaxNumberInArray(int A[100], int length)
+{
+	int Max = A[0];
+	for (int i = 0; i <= length - 1; i++)
+		if (Max < A[i])
+			Max = A[i];
+	return Max;
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i <= length - 1; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+        srand((unsigned)time(NULL));
+	int Array[100], length = 0;
+	InputArrayData(Array, length);
+	cout << "Array Elements : ";
+	PrintArrayData(Array, length);
+	cout << "\nMax Numbre Is : " << SearchMaxNumberInArray(Array, length) << endl<<endl;
+}
+
+
+========================================================================================================================
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Min number in Array}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+void InputArrayData(int A[100], int& length)
+{
+	cout << "Please enter Array length ? ";
+	cin >> length;
+	cout << endl;
+	for (int i = 0; i <= length - 1; i++)
+		A[i] = RandomNumber(1, 100);
+}
+
+int SearchMinNumberInArray(int A[100], int length)
+{
+	int Min = A[0];
+	for (int i = 0; i <= length - 1; i++)
+		if (Min > A[i])
+			Min = A[i];
+	return Min;
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i <= length - 1; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int Array[100], length = 0;
+	InputArrayData(Array, length);
+	cout << "Array Elements : ";
+	PrintArrayData(Array, length);
+	cout << "\nMax Numbre Is : " << SearchMinNumberInArray(Array,length) << endl<<endl;
+}
+
+=============================================================================================================
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{sum of Array elements}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+void InputArrayData(int A[100], int& length)
+{
+	cout << "Please enter an array length : ";
+	cin >> length;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		A[i] = RandomNumber(1, 100);
+	}
+}
+
+int SumOfArrayElements(int A[100], int length)
+{
+	int Sum = 0;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		Sum += A[i];
+	}
+	return Sum;
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i <= length - 1; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int Array[100], length = 0;
+	InputArrayData(Array, length);
+	cout << "\nArray elements : ";
+	PrintArrayData(Array, length);
+	cout << "Sum of all number is : " << SumOfArrayElements(Array, length) << endl;
+
+}
+
+
+=======================================================================================================================
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Average of Array elements}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+void InputArrayData(int A[100], int& length)
+{
+	cout << "Please enter an array length : ";
+	cin >> length;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		A[i] = RandomNumber(1, 100);
+	}
+}
+
+int SumOfArrayElements(int A[100], int length)
+{
+	int Sum = 0;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		Sum += A[i];
+	}
+	return Sum;
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i <= length - 1; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout<<endl << endl;
+}
+
+float AverageOfArrayElements(int A[100], int length)
+{
+	int sum = 0;
+	float Average = 0;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		sum += A[i];
+	}
+	Average = (float)sum / length;
+	return Average;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int Array[100], length = 0;
+	InputArrayData(Array, length);
+	cout << "\nArray elements : ";
+	PrintArrayData(Array, length);
+	cout << "\nSum of all number is : " << SumOfArrayElements(Array, length) << endl;
+	cout << "Average of all number is : " << AverageOfArrayElements(Array, length) << endl;
+}
+
+
+======================================================================================================================
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{copy Array elements }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+void InputArrayData(int A[100], int& length)
+{
+	cout << "Please enter an array length : ";
+	cin >> length;
+	cout << endl;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		A[i] = RandomNumber(1, 100);
+	}
+}
+
+void CopyArrayElements(int A[100], int S[100], int length)
+{
+	for (int i = 0; i < length; i++)
+		S[i] = A[i];
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl << endl;
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int A[100], S[100], length = 0;
+	InputArrayData(A, length);
+	cout << "Array [1] Elements : "<<endl;
+	PrintArrayData(A, length);
+	CopyArrayElements(A, S,  length);
+	cout << "Array [2] Elements Copying : "<<endl;
+	PrintArrayData(S, length);
+}
+=====================================================================================================================
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Print prime number in copier array}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+enum enPrimeNumber{Prime=1,NotPrime=0};
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+void InputArrayData(int A[100], int& length)
+{
+	cout << "Please enter an array length : ";
+	cin >> length;
+	cout << endl;
+	for (int i = 0; i <= length - 1; i++)
+	{
+		A[i] = RandomNumber(1, 100);
+	}
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl << endl;
+}
+
+enPrimeNumber CheckPrimeNumber(int num)
+{
+	int HalfOfNumber = round(num / 2);
+	for (int i = 2; i <= HalfOfNumber; i++)
+		if (num % i ==0)
+			return enPrimeNumber::NotPrime;
+	return enPrimeNumber::Prime;
+}
+
+void InputPrimeNumber(int A[100], int S[100], int length, int& length2)
+{
+	for (int i = 0; i <= length - 1; i++)
+	{
+		if (CheckPrimeNumber(A[i]) == enPrimeNumber::Prime)
+		{
+			S[length2] = A[i];
+			length2++;
+		}
+	}
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int A[100], S[100], length = 0, length2 = 0;
+	InputArrayData(A, length);
+	cout << "Array [1] Elements : " << endl;
+	PrintArrayData(A, length);
+	InputPrimeNumber(A, S, length, length2);
+	cout << "Array [2] Elements with prime number : " << endl;
+	PrintArrayData(S, length2);
+}
+=====================================================================================================================
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{sum of towe array in array}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]]
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<cstdlib>
+using namespace std;
+
+enum enPrimeNumber{Prime=1,NotPrime=0};
+
+int RandomNumber(int from, int to)
+{
+	int Rand = rand() % (to - from + 1) + from;
+	return Rand;
+}
+
+int ReadLength(string message)
+{
+	int length = 0;
+	do
+	{
+		cout << message << endl;
+		cin >> length;
+	} while (length <= 0);
+	return length;
+}
+
+void InputArrayData(int A[100], int length)
+{
+	for (int i = 0; i <= length - 1; i++)
+	{
+		A[i] = RandomNumber(1, 100);
+	}
+}
+
+void PrintArrayData(int A[100], int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl << endl;
+}
+
+void SumOfTwoArray(int A[100], int S[100], int C[100], int length)
+{
+	for (int i = 0; i <= length - 1; i++)
+		C[i] = A[i] + S[i];
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int A[100], S[100], C[100], length = ReadLength("Please enter array length ? ");
+	InputArrayData(A, length);
+	InputArrayData(S, length);
+	SumOfTwoArray(A, S, C, length);
+	cout << "Array [1] Elements : " << endl;
+	PrintArrayData(A, length);
+	cout << "Array [2] Elements : " << endl;
+	PrintArrayData(S, length);
+	cout << "Array [3] Elements Sum of two array : " << endl;
+	PrintArrayData(C, length);
+}
